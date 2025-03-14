@@ -2,56 +2,71 @@ package com.examly.springapp.controller;
 
 import com.examly.springapp.model.Employee;
 import com.examly.springapp.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-@RestController@RequestMapping("/employees")
+@RestController@RequestMapping("/employee")
 public class EmployeeController {
 
-    private final EmployeeService employeeService;
+    @Autowired
+    private EmployeeService employeeService;
 
-    public EmployeeController(EmployeeService employeeService) {
-            this.employeeService = employeeService;
-            }
-
-            @PostMapping
-            public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
-                    try {
-                                Employee savedEmployee = employeeService.addEmployee(employee);
-                                        return ResponseEntity.status(HttpStatus.CREATED).body(savedEmployee);
+    @PostMapping
+    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
+        try {
+                Employee savedEmployee = employeeService.addEmployee(employee);
+                    return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
                     } catch (Exception e) {
-                                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+                            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
                     }
                 }
 
-                @GetMapping("/containing/{searchTerm}")
-                public ResponseEntity<List<Employee>> getEmployeesContaining(@PathVariable String searchTerm) {
-                    return ResponseEntity.ok(employeeService.getEmployeesContaining(searchTerm));
+                @GetMapping
+                public ResponseEntity<List<Employee>> getAllEmployees() {
+                    List<Employee> employees = employeeService.getAllEmployees();
+                    if (employees.isEmpty()) {
+                            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                    }
+                    return new ResponseEntity<>(employees, HttpStatus.OK);
                 }
 
-                
-                        
+                @GetMapping("/{id}")
+                public ResponseEntity<Employee> getEmployeeById(@PathVariable int id) {
+                    Employee employee = employeeService.getEmployeeById(id);
+                    if (employee == null) {
+                            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                    }
+                    return new ResponseEntity<>(employee, HttpStatus.OK);
+                }
 
-                        @GetMapping("/isContaining/{searchTerm}")
-                        public ResponseEntity<List<Employee>> getEmployeesIsContaining(@PathVariable String searchTerm) {
-                                return ResponseEntity.ok(employeeService.getEmployeesIsContaining(searchTerm));  
-                                }
+                @GetMapping("/hired/{hireDate}")
+                public ResponseEntity<List<Employee>> getEmployeesByHireDate(@PathVariable String hireDate) {
+                    try {
+                            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(hireDate);
+                                List<Employee> employees = employeeService.getEmployeesByHireDate(date);
+                                    if (employees.isEmpty()) {
+                                                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                                    }
+                                        return new ResponseEntity<>(employees, HttpStatus.OK);
+                                } catch (ParseException e) {
+                                        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                                        }
+                                    }
 
-                                @GetMapping("/startsWith/{name}")
-                                public ResponseEntity<List<Employee>> getEmployeesStartsWith(@PathVariable String name) {
-                                        return ResponseEntity.ok(employeeService.findByNameStartsWith(name));
-                                }
-
-                                @GetMapping("/endsWith/{name}")
-                                public ResponseEntity<List<Employee>> getEmployeesEndsWith(@PathVariable String name) {
-                                        return ResponseEntity.ok(employeeService.findByNameEndsWith(name));
-                                }
-
-                                @GetMapping("/contains/{designation}")
-                                public ResponseEntity<List<Employee>> getEmployeesByDesignation(@PathVariable String designation) {
-                                        return ResponseEntity.ok(employeeService.findByDesignationContaining(designation));
-                                }
-                            }
+                                    @GetMapping("/first-three-characters-of-name")
+                                    public ResponseEntity<List<String>> getFirstThreeCharacterNames() {
+                                        List<String> names = employeeService.getFirstThreeCharacterNames();
+                                        if (names.isEmpty()) {
+                                                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                                        }
+                                        return new ResponseEntity<>(names, HttpStatus.OK);
+                                        }
+                                    }
