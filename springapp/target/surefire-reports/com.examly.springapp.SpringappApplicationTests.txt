@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: com.examly.springapp.SpringappApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 3.201 s <<< FAILURE! - in com.examly.springapp.SpringappApplicationTests
-com.examly.springapp.SpringappApplicationTests.testPostData  Time elapsed: 0.228 s  <<< FAILURE!
+Tests run: 10, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 3.049 s <<< FAILURE! - in com.examly.springapp.SpringappApplicationTests
+com.examly.springapp.SpringappApplicationTests.testPostData  Time elapsed: 0.184 s  <<< FAILURE!
 java.lang.AssertionError: Status expected:<201> but was:<404>
 	at com.examly.springapp.SpringappApplicationTests.testPostData(SpringappApplicationTests.java:39)
 
-com.examly.springapp.SpringappApplicationTests.testGetAll  Time elapsed: 0.039 s  <<< FAILURE!
+com.examly.springapp.SpringappApplicationTests.testGetAll  Time elapsed: 0.016 s  <<< FAILURE!
 java.lang.AssertionError: Status expected:<200> but was:<404>
 	at com.examly.springapp.SpringappApplicationTests.testGetAll(SpringappApplicationTests.java:66)
 
@@ -14,11 +14,11 @@ com.examly.springapp.SpringappApplicationTests.testGetEmployeeByID  Time elapsed
 java.lang.AssertionError: Status expected:<200> but was:<404>
 	at com.examly.springapp.SpringappApplicationTests.testGetEmployeeByID(SpringappApplicationTests.java:54)
 
-com.examly.springapp.SpringappApplicationTests.testGetEmployeeByHireDate  Time elapsed: 0.019 s  <<< FAILURE!
+com.examly.springapp.SpringappApplicationTests.testGetEmployeeByHireDate  Time elapsed: 0.008 s  <<< FAILURE!
 java.lang.AssertionError: Status expected:<200> but was:<404>
 	at com.examly.springapp.SpringappApplicationTests.testGetEmployeeByHireDate(SpringappApplicationTests.java:82)
 
-com.examly.springapp.SpringappApplicationTests.testGetFirstThreeCharacterNames  Time elapsed: 0.009 s  <<< FAILURE!
+com.examly.springapp.SpringappApplicationTests.testGetFirstThreeCharacterNames  Time elapsed: 0.006 s  <<< FAILURE!
 java.lang.AssertionError: Status expected:<200> but was:<404>
 	at com.examly.springapp.SpringappApplicationTests.testGetFirstThreeCharacterNames(SpringappApplicationTests.java:97)
 

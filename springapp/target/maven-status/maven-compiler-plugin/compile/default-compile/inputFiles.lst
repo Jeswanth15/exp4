@@ -1,5 +1,5 @@
-D:\Spring projects\SKCT\Day 3\student\springapp\src\main\java\com\example\springapp\service\ApiService.java
-D:\Spring projects\SKCT\Day 3\student\springapp\src\main\java\com\example\springapp\controller\ApiController.java
-D:\Spring projects\SKCT\Day 3\student\springapp\src\main\java\com\example\springapp\SpringappApplication.java
-D:\Spring projects\SKCT\Day 3\student\springapp\src\main\java\com\example\springapp\repository\StudentRepo.java
-D:\Spring projects\SKCT\Day 3\student\springapp\src\main\java\com\example\springapp\model\Student.java
+/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/controller/EmployeeController.java
+/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/service/EmployeeService.java
+/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/model/Employee.java
+/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/repository/EmployeeRepo.java
+/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/SpringappApplication.java
